@@ -39,7 +39,8 @@
         </LinearLayout>
         <ImageButton
             android:layout_marginTop="3dp"
-            android:layout_marginStart="200dp"
+            android:layout_marginLeft="200dp"
+            android:layout_marginRight="18dp"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/ic_search"
@@ -47,14 +48,13 @@
             android:background="#00000000"/>
         <ImageButton
             android:layout_marginTop="3dp"
-            android:layout_marginLeft="17dp"
+            android:layout_marginRight="15dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_menu"
             android:scaleType="centerCrop"
             android:background="#00000000"/>
         <ImageButton
-            android:layout_marginLeft="17dp"
             android:layout_width="31dp"
             android:layout_height="31dp"
             android:src="@drawable/ic_bell"
@@ -73,6 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_marginTop="50dp"
         android:orientation="vertical"
         tools:listitem="@layout/item_home_rv">
     </androidx.recyclerview.widget.RecyclerView>

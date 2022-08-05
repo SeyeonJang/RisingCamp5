@@ -7,38 +7,30 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.risingcamp5.databinding.ActivityMainBinding
 import com.example.risingcamp5.databinding.FragmentHomeBinding
 
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class HomeFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-    private var _binding : FragmentHomeBinding? = null
-    private val binding get() = _binding
+    private lateinit var binding : FragmentHomeBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val rvAdapter by lazy {
+        HomeRvAdapter()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+
         setRv()
+
+        return binding.root
     }
 
     private fun setRv() {
-        val adapter = HomeRvAdapter()
-
-        /*
-        val linearLayoutManager = LinearLayoutManager(requireActivity())
-        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-        binding!!.homeRv.setLayoutManager(linearLayoutManager) */
-
-        binding?.homeRv?.adapter = adapter
-        adapter.getData(returngetData())
+        binding.homeRv.adapter = rvAdapter
+        rvAdapter.getData(returngetData())
     }
 
     fun returngetData() : MutableList<DataHomeRv> {
@@ -50,32 +42,5 @@ class HomeFragment : Fragment() {
         }
 
         return list
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        //_binding = FragmentHomeBinding.inflate(inflater)
-        // return binding.getRoot()
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }
